@@ -11,9 +11,7 @@ survival_rate=5
 
 hello_world_ascii_values = []
 
-mutation_rate=0.7
-
-
+mutation_rate=0.3
 
 for s in text:
     hello_world_ascii_values.append(ord(s))

@@ -5,7 +5,7 @@ chromosomes=[]
 
 #initial_chromosomes
 
-text = "HELLO WORLD"
+text = "NIGAR NEERY"
 
 survival_rate=5
 

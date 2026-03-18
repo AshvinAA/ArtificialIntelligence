@@ -1,0 +1,57 @@
+﻿Adversarial Search — Class Performance Evaluation
+Background
+You are given a 3×3 TicTacToe game state. Two players alternate turns:
+* MAX player = "O" (Agent)
+
+* MIN player = "X" (Human)
+
+The game is deterministic, perfect-information, and zero-sum.
+Your job is to implement only the evaluation (utility) function and the Alpha-Beta pruning search that selects the best next move for the current player.
+Board Representation
+A board state is represented as a list of length 9:
+Index positions:
+0 | 1 | 2
+--+---+--
+3 | 4 | 5
+--+---+--
+6 | 7 | 8
+
+
+Tasks
+Task 1 — Utility Function (Evaluation)
+Terminal Utility
+   * If "O" (Agent) wins → return +100
+
+   * If "X" (Human) wins → return -100
+
+   * If draw → return 0
+Non-Terminal Heuristic (Depth-Limited Evaluation)
+If board is not terminal:
+For each winning line:
+      * If line contains only O and empty:
+
+         * 2 O + 1 empty → +10
+
+         * 1 O + 2 empty → +1
+
+            * If line contains only X and empty:
+
+               * 2 X + 1 empty → -10
+
+               * 1 X + 2 empty → -1
+
+                  * If line contains both X and O → 0
+
+Return the total score.
+This heuristic will be used when depth reaches 0.
+Task 2 — Alpha-Beta Recursion
+Rules:
+                     1. If terminal → return utility(board)
+
+                     2. If depth == 0 → return utility(board)
+
+                     3. If is_agent_turn == True → maximize (Agent’s turn)
+
+                     4. If is_agent_turn == False → minimize (Human’s turn)
+
+                     5. Apply alpha-beta pruning correctly

@@ -65,7 +65,14 @@ class Spot:
         self.color=PURPLE
 
     def draw(self):
-        pygame.draw.rect(WIN,self.color,())
+        pygame.draw.rect(WIN,self.color,(self.x , self.y , self.width , self.width))
+        
+    def update_neighbors(self,grid):
+        pass
+    
+    
+        
+    
 
 
 

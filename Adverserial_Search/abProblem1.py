@@ -1,9 +1,9 @@
-from queue import Queue
+#Tic Tac Toe Game with Alpha Beta Pruning
 import math
 
-state=[" "]*9
 
-state=["X","O","X","O","X","O","O","X","O"]
+
+state=[" "," ","O"," ","X","X","X"," ","O"]
 
 
 
@@ -29,7 +29,7 @@ def returnDiagonal(state,diaNumber):
         return [state[2],state[4],state[6]]
 
 def isSame(state):
-    return state[0] == state[1]  and state[1] == state[2]
+    return state[0] == state[1] and state[1] == state[2] and state[0] != " "
 
 def isTerminal(state):
     for i in range(len(state)):
@@ -87,7 +87,7 @@ def heuristic_comparator(line):
     else:
         if(numX == 2):
             return -10
-        return 1
+        return -1
 
 
 def heuristic(state):
@@ -114,7 +114,10 @@ def heuristic(state):
     return total_score
         
 
-def minimax(state , depth , is_agent_turn):
+def minimax(state , depth , is_agent_turn ,alpha, beta):
+
+    if(utility(state) == 100 or utility(state) == -100):
+        return utility(state)
 
     if(isTerminal(state)):
         return utility(state)
@@ -128,9 +131,12 @@ def minimax(state , depth , is_agent_turn):
         for i in range(len(state)):
             if(state[i]==" "):
                 state[i]="O"
-                score = minimax(state , depth -1 , False)
+                score = minimax(state , depth -1 , False , alpha , beta )
                 state[i]=" "
                 best_score=max(score , best_score)
+                if(score >= beta): return score
+                if(score > alpha): alpha =score
+
         return best_score
     else:
         best_score= math.inf
@@ -138,7 +144,12 @@ def minimax(state , depth , is_agent_turn):
         for i in range(len(state)):
             if(state[i]==" "):
                 state[i]="X"
-                score = minimax(state , depth -1 , True)
+                score = minimax(state , depth -1 , True , alpha , beta)
                 state[i]=" "
                 best_score=min(score , best_score)
+                if(score <= alpha): return score
+                if(score < beta): beta =score
         return best_score
+    
+
+print(minimax(state , 5, True , -math.inf , math.inf))

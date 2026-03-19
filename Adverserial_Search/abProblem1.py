@@ -1,20 +1,51 @@
 from queue import Queue
 
-grid=[][]
+state=[" "]*9
 
+state=["X","O","X","O","X","O","O","X","O"]
+
+
+
+def returnRow(state,rowNumber):
+    arr=[]
+    for i in range(3):
+        index=i+3*rowNumber
+        arr.append(state[index])
+    return arr
+
+def returnColumn(state,colNumber):
+    arr=[]
+    index=0
+    for i in range(3):
+        arr.append(state[index+colNumber])
+        index+=3
+    return arr
+
+def returnDiagonal(state,diaNumber):
+    if(diaNumber==0):
+        return [state[0],state[4],state[8]]
+    else:
+        return [state[2],state[4],state[6]]
+
+def isSame(arr):
+    return arr[0] == arr[1] == arr[2]
+        
 def winner(grid):
-    for i in range(len(grid)):
-        if(grid[i][0] == grid[i][1] == grid[i][2]):
-            return grid[i][0]
-    for i in range(len(grid)):
-        if(grid[0][i] == grid[1][i] == grid[2][i]):
-            return grid[0][i]
+    for i in range(3):
+        row=returnRow(state,i)
+        if(isSame(row)):
+            return row[0]
+    for i in range(3):
+        column=returnColumn(state,i)
+        if(isSame(column)):
+            return column[0]
     
-    if(grid[0][2] == grid[1][1] == grid[2][0]):
-        return grid[0][2]
-    if(grid[0][0] == grid[1][1] == grid[2][2]):
-        return grid[0][0]
+    for i in range(2):
+        diagonal = returnDiagonal(state,i)
+        if(isSame(diagonal)):
+            return diagonal[0]
     return "N"
+    
 
 def utility(grid):
     
@@ -27,8 +58,8 @@ def utility(grid):
     else:
         return 0
     
-            
+
         
 
-
+print(winner(state))
 

@@ -1,11 +1,7 @@
 #Tic Tac Toe Game with Alpha Beta Pruning
 import math
 
-
-
 state=[" "," ","O"," ","X","X","X"," ","O"]
-
-
 
 def returnRow(state,rowNumber):
     arr=[]

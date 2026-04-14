@@ -71,7 +71,3 @@ class helper:
 
         return fitness , overlaps , boundary_box_area
 
-
-
-    
-    

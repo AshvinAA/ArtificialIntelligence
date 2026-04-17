@@ -9,7 +9,6 @@ goal_r, goal_c = map(int, input().split())
 maze = []
 for _ in range(n):
     row_string = input().strip()
-    # Convert the string (like "###0###") into 1s and 0s
     row_array = []
     for char in row_string:
         if char == '#':

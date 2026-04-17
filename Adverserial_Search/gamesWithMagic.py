@@ -29,13 +29,12 @@ def alpha_beta(depth , nodes_index , is_maxing , alpha ,beta , leaf_nodes , dark
         for i in range(2):
             child_index = nodes_index*2+i
 
-            score = alpha_beta(depth+1 , child_index , True,alpha , beta , leaf_nodes , dark_magic , dark_flag )
-
-            if(dark_flag == True):
+            score = alpha_beta(depth+1 , child_index , True,alpha , beta , leaf_nodes , dark_magic , dark_flag )     
+            if dark_flag:
                 best_score = max(best_score,score) - dark_magic
             else:
                 best_score = min(best_score,score)
-                
+
             beta = min(beta, best_score)
 
             if(beta <= alpha):
